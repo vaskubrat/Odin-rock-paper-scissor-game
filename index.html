@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="script" href="script.js">
+</head>
+<body>
+  <script>
+
+    function playGame() {
+
+      let computerScore = 0;
+      let humanScore = 0;
+      let round = 1;
+      console.log('Computer score: ' + computerScore);
+      console.log('Human score: ' + humanScore);
+      
+      
+      function getComputerChoice() {
+        const randomInteger = Math.floor(Math.random() * 3) + 1;
+        const possibleChoices = ['rock', 'paper', 'scissor'];
+        return possibleChoices[randomInteger - 1];
+      } 
+    
+      function getHumanChoice() {
+        let choice = prompt('Rock, paper or scissor?').toLowerCase();
+
+        while (choice !== 'rock' && choice !== 'paper' && choice !== 'scissor') {
+          console.log('You have chosen a wrong entry. Please try again');
+          choice = prompt('Rock, paper or scissor?').toLowerCase();
+        }
+
+        return choice;
+      }
+    
+      function playRound(computerChoice, humanChoice) {
+        
+        if (computerChoice === 'rock' && humanChoice === 'scissor') {
+          computerScore += 1;
+          console.log('You lost. Computer chose rock and you chose scissor. Computer score : ' + computerScore + ' Human score: ' + humanScore);
+        }
+        if (computerChoice === 'rock' && humanChoice === 'paper') {
+          humanScore += 1;
+          console.log('You won! Computer chose rock and you chose paper. Computer score :' + computerScore + ' Human score: ' + humanScore);
+        }
+        if (computerChoice === 'rock' && humanChoice === 'rock') {
+          console.log('Draw. You both chose rock. Computer score :' + computerScore + ' Human score: ' + humanScore);
+        }
+
+        if (computerChoice === 'paper' && humanChoice === 'scissor') {
+          humanScore += 1;
+          console.log('You won! Computer chose paper and you chose scissor. Computer score: ' + computerScore + ' Human score: ' + humanScore);
+        }
+        if (computerChoice === 'paper' && humanChoice === 'paper') {
+          console.log('Draw. You both chose paper.');
+        }
+        if (computerChoice === 'paper' && humanChoice === 'rock') {
+          computerScore += 1;
+          console.log('You lost. Computer chose paper and you chose rock. Computer score: ' + computerScore + ' Human score: ' + humanScore);
+        }
+
+        if (computerChoice === 'scissor' && humanChoice === 'scissor') {
+          console.log('Draw. You both chose scissor. Computer score: ' + computerScore + ' Human score: ' + humanScore);
+        }
+        if (computerChoice === 'scissor' && humanChoice === 'paper') {
+          computerScore += 1;
+          console.log('You lost. Computer chose scissor and you chose paper. Computer score: ' + computerScore + ' Human score: ' + humanScore);
+        }
+
+        if (computerChoice === 'scissor' && humanChoice === 'rock') {
+          humanScore += 1;
+          console.log('You won! Computer chose scissor and you chose rock. Computer score: ' + computerScore + ' Human score: ' + humanScore);
+        }
+      }
+
+      while (round <= 5) {
+        console.log('Round: ' + round);
+        let computerChoice = getComputerChoice();
+        let humanChoice = getHumanChoice();
+        playRound(computerChoice, humanChoice);
+        round += 1;
+      }
+
+      function compareScores(computerScore, humanScore) {
+        if (computerScore > humanScore) {
+          console.log("Sorry. The computer won... Here is the final score: Computer score: " + computerScore + ', Human score: ' + humanScore);
+        } 
+        if (humanScore > computerScore) {
+          console.log("Congratulations! You won! Here is the final score: Computer score: " + computerScore + ', Human score: ' + humanScore);
+        }
+        
+        if (computerScore === humanScore) {
+          console.log("It's a draw. There is no winner. Computer score: " + computerScore + ', Human score: ' + humanScore);
+        }
+      }
+
+      compareScores(computerScore, humanScore);
+    } 
+  
+    playGame();
+    
+
+  </script>
+</body>
+</html>
+
+
+</script>
